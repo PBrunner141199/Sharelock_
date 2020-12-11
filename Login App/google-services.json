@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "893044579349",
+    "firebase_url": "https://sharelock-app-f51af-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "sharelock-app-f51af",
+    "storage_bucket": "sharelock-app-f51af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893044579349:android:517ffc00a3ddc4a296421c",
+        "android_client_info": {
+          "package_name": "com.example.sharelock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893044579349-nj20cmjmirkkg311bq5m3qc4j1pjffhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD60x4FPP4kL9fqayq0n7JF2ZxRaa0Fl9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893044579349-nj20cmjmirkkg311bq5m3qc4j1pjffhd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

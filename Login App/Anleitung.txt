@@ -1,0 +1,9 @@
+Neues Projekt in Android Studio erstellen und dann die Dateien in dem Ordner mit den bereits vorhandenen ersetzen.
+Beispiel:
+Die Java Klassen hierhin: C:\Users\(Nutzername)\AndroidStudioProjects\Sharelock(Projektname)\app\src\main\java\com\example\Sharelock
+Die Xml Dateien müssen unter dem unter dem main Verzeichennis in res\layout
+Die google-services.json Datei unter dem App Ordner hinzufügen.
+Das Android Manifest muss in den Main Ordner und bei package muss der Name eures Verzeichnises rein
+Zudem müssen die Gradle Files bearbeitet werden wie hier gezeigt:
+https://firebase.google.com/docs/android/setup?authuser=0 
+Schritt 3.2a ff.
