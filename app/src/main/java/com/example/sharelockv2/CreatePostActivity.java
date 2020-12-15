@@ -3,12 +3,17 @@ package com.example.sharelockv2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -36,6 +41,8 @@ import java.util.UUID;
 
 public class CreatePostActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE = 1;
+    private static final String TAG="CreatePostActivity";
     ImageView postimage;
     Button createbtn;
     RadioButton radioButton;
@@ -46,6 +53,8 @@ public class CreatePostActivity extends AppCompatActivity {
     private StorageReference mStorageRef;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
+    int angonach;
+
 
 
 
@@ -71,8 +80,7 @@ public class CreatePostActivity extends AppCompatActivity {
         camerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent camera= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(camera, 0);
+                verifyPermissions();
             }
         });
         createbtn.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +89,36 @@ public class CreatePostActivity extends AppCompatActivity {
                 upload();
             }
         });
+    }
+    private void verifyPermissions(){
+        Log.d(TAG, "verifyPermissions: asking user for permissions");
+        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA};
+
+        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[0]) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[1]) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[2]) == PackageManager.PERMISSION_GRANTED){
+            takePicture();
+        }
+        else{
+            ActivityCompat.requestPermissions(CreatePostActivity.this,
+                    permissions,
+                    REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        verifyPermissions();
+    }
+
+    public void takePicture(){
+        Intent camera= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(camera, 0);
     }
 
     @Override
@@ -125,17 +163,21 @@ public class CreatePostActivity extends AppCompatActivity {
                                 String name = user.getDisplayName();
                                 Uri downloadUri = uri;
 
-                               //String angonach= checkRadio();
-
-
-                                Model model = new Model(postDesc,postTitle,uID,name, uri.toString()/*,angonach*/);
-                                String modelid = mDatabase.push().getKey();
-                                mDatabase.child(name).child(modelid).setValue(model);
+                                int radioId = radioGroup.getCheckedRadioButtonId();
+                                if (radioId== -1){
+                                    Toast.makeText(CreatePostActivity.this, "Sie müssen Angebot oder Nachfrage auswählen.", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(CreatePostActivity.this, CreatePostActivity.class));
+                                }else{
+                                    Model model = new Model(postDesc,postTitle,uID,name, uri.toString(),radioId);
+                                    String modelid = mDatabase.push().getKey();
+                                    mDatabase.child(name).child(modelid).setValue(model);
+                                    Toast.makeText(CreatePostActivity.this, "Post wurde erfolgreich erstellt.", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(CreatePostActivity.this,MarketplaceActivity.class));
+                                }
                             }
                         });
 
-                        Toast.makeText(CreatePostActivity.this, "Post wurde erfolgreich erstellt.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(CreatePostActivity.this,MarketplaceActivity.class));
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -150,21 +192,10 @@ public class CreatePostActivity extends AppCompatActivity {
 
 
         }
-       /* public String checkRadio() {
-            int radioId = radioGroup.getCheckedRadioButtonId();
-            String aoderN =
-            if (radioId == 0) {
-                aoderN = "Nachfrage";
 
-            } else if (radioId == 1) {
-                aoderN = "Angebot";
 
-            } else {
-                Toast.makeText(CreatePostActivity.this, "Sie müssen Angebot oder Nachfrage auswählen.", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(CreatePostActivity.this, CreatePostActivity.class));
-            }
-            return aoderN;*/
-        //}
+
+
 
     }
 

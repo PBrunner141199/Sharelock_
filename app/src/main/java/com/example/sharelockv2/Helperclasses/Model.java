@@ -1,15 +1,19 @@
 package com.example.sharelockv2.Helperclasses;
 
 public class Model {
-    String desc, title, uID,username, imageUrl;//,type
+    String desc, title, uID,username, imageUrl;
+    int type;
 
-    public Model(String desc, String title, String uID, String username, String imageUrl/*, String type*/){
+
+
+    public Model(String desc, String title, String uID, String username, String imageUrl, int type){
         this.title=title;
         this.desc=desc;
         this.uID=uID;
         this.username=username;
         this.imageUrl = imageUrl;
-       // this.type = type;
+        this.type = type;
+
 
     }
     public String getTitle(){
@@ -19,11 +23,11 @@ public class Model {
         this.title=title;
     }
     public String getDesc(){return desc;}
-    public void setdesc(String desc){
+    public void setDesc(String desc){
         this.desc=desc;
     }
-    public String getuID(){return  uID;}
-    public void setuID(String uID){
+    public String getUID(){return  uID;}
+    public void setUID(String uID){
         this.uID=uID;
     }
     public String  getUsername(){return  username;}
@@ -36,6 +40,11 @@ public class Model {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-   // public String setType(){return type;}
-    //public void setType(String type){this.type= type;}
+    public int getType() {
+        return type;
+    }
+    public void setType(int type) {
+        this.type = type;
+    }
+
 }
