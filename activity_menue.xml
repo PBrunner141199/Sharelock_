@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menuePage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenueActivity">
+
+    <TextView
+        android:id="@+id/menueText"
+        android:layout_width="200dp"
+        android:layout_height="58dp"
+        android:fontFamily="@font/vollkorn"
+
+        android:text="Menü"
+        android:textColor="@android:color/black"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/welcomeMenue"
+        android:layout_width="265dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/vollkorn"
+        android:text="Hallo! Schön, dass du da bist."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.233" />
+
+    <ImageButton
+        android:id="@+id/shareCookBookMenue"
+        android:layout_width="150dp"
+        android:layout_height="222dp"
+        android:background="@android:color/darker_gray"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.868"
+        app:srcCompat="@drawable/shareCookBookMenue" />
+
+    <ImageButton
+        android:id="@+id/fridgeMenue"
+        android:layout_width="150dp"
+        android:layout_height="222dp"
+        android:background="@android:color/darker_gray"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.446"
+        app:srcCompat="@drawable/fridgeMenue" />
+
+    <ImageButton
+        android:id="@+id/profileMenue"
+        android:layout_width="150dp"
+        android:layout_height="222dp"
+        android:background="@android:color/darker_gray"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.868"
+        app:srcCompat="@drawable/profileMenue" />
+
+    <ImageButton
+        android:id="@+id/sharelockMenue"
+        android:layout_width="150dp"
+        android:layout_height="222dp"
+        android:background="@android:color/darker_gray"
+        android:baselineAlignBottom="false"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.447"
+        app:srcCompat="@drawable/sharelockMenue" />
+
+    <ImageButton
+        android:id="@+id/notificationsMenue"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.081"
+        app:srcCompat="@drawable/ic_baseline_notifications_active_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
