@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
-        <item>@font/bungee_outline</item>
-        <item>@font/karla</item>
-        <item>@font/merriweather_light</item>
         <item>@font/vollkorn</item>
     </array>
 </resources>
