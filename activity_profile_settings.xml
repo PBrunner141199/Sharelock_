@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileSettings">
+
+    <TextView
+        android:id="@+id/usernameChangeText"
+        android:layout_width="281dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="388dp"
+        android:fontFamily="@font/vollkorn"
+        android:text="Gib einen Benutzernamen ein:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/profilePicture2"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@android:color/white"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.298"
+        app:srcCompat="@drawable/user_account_icon" />
+
+    <EditText
+        android:id="@+id/usernameChange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:hint="Benutzername"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.541" />
+
+    <TextView
+        android:id="@+id/profileSettingsText"
+        android:layout_width="299dp"
+        android:layout_height="55dp"
+        android:fontFamily="@font/vollkorn"
+
+        android:text="Profileinstellungen"
+        android:textColor="@android:color/black"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.147"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/arrowBackButtonProfileSettings"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.019"
+        app:srcCompat="@drawable/arrow_back_button" />
+
+    <Switch
+        android:id="@+id/notificationSettings"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/vollkorn"
+        android:text="Mitteilungen erlauben"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.675"
+        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="291dp"
+        android:layout_height="52dp"
+        android:text="Einstellungen übernehmen"
+        app:backgroundTint="@android:color/holo_green_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.929"
+        app:strokeColor="@color/cardview_shadow_start_color"
+        app:strokeWidth="3dp" />
+
+    <ImageButton
+        android:id="@+id/cameraChangePicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.658"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.254"
+        app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+
+    <ImageButton
+        android:id="@+id/galleryChangePicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.743"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.319"
+        app:srcCompat="@drawable/ic_baseline_image_24" />
+</androidx.constraintlayout.widget.ConstraintLayout>
