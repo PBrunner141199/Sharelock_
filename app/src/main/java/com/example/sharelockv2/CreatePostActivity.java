@@ -53,7 +53,7 @@ public class CreatePostActivity extends AppCompatActivity {
     private StorageReference mStorageRef;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    int angonach;
+
 
 
 
@@ -68,7 +68,7 @@ public class CreatePostActivity extends AppCompatActivity {
         postimage= findViewById(R.id.postImage);
         createbtn=findViewById(R.id.createbtn);
         radioGroup = findViewById(R.id.radioGroup);
-
+        postimage.setImageResource(R.drawable.sharelock_menue);
 
 
         mStorageRef = FirebaseStorage.getInstance().getReference("PostPictures");
@@ -131,67 +131,73 @@ public class CreatePostActivity extends AppCompatActivity {
         }
     }
     private void upload() {
-        final ProgressBar p = findViewById(R.id.progressBar);
+        if (image!=null){
+            final ProgressBar p = findViewById(R.id.progressBar);
 
-        p.setVisibility(View.VISIBLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            p.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
-        final String random = UUID.randomUUID().toString();
-        StorageReference imageRef = mStorageRef.child("image" + random);
+            final String random = UUID.randomUUID().toString();
+            StorageReference imageRef = mStorageRef.child("image" + random);
 
-        byte[] b = stream.toByteArray();
-        imageRef.putBytes(b)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        p.setVisibility(View.GONE);
-                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            byte[] b = stream.toByteArray();
+            imageRef.putBytes(b)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            p.setVisibility(View.GONE);
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-                        taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                final EditText title = findViewById(R.id.postTitle);
-                                String postTitle = title.getText().toString();
-                                final EditText desc = findViewById(R.id.postDesc);
-                                String postDesc = desc.getText().toString();
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                String uID = user.getUid();
-                                String name = user.getDisplayName();
-                                Uri downloadUri = uri;
+                            taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final EditText title = findViewById(R.id.postTitle);
+                                    String postTitle = title.getText().toString();
+                                    final EditText desc = findViewById(R.id.postDesc);
+                                    String postDesc = desc.getText().toString();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    String uID = user.getUid();
+                                    String name = user.getDisplayName();
+                                    Uri downloadUri = uri;
 
-                                int radioId = radioGroup.getCheckedRadioButtonId();
-                                if (radioId== -1){
-                                    Toast.makeText(CreatePostActivity.this, "Sie müssen Angebot oder Nachfrage auswählen.", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(CreatePostActivity.this, CreatePostActivity.class));
-                                }else{
-                                    Model model = new Model(postDesc,postTitle,uID,name, uri.toString(),radioId);
-                                    String modelid = mDatabase.push().getKey();
-                                    mDatabase.child(name).child(modelid).setValue(model);
-                                    Toast.makeText(CreatePostActivity.this, "Post wurde erfolgreich erstellt.", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(CreatePostActivity.this,MarketplaceActivity.class));
+                                    int radioId = radioGroup.getCheckedRadioButtonId();
+                                    if (radioId== -1){
+                                        Toast.makeText(CreatePostActivity.this, "Sie müssen Angebot oder Nachfrage auswählen.", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(CreatePostActivity.this, CreatePostActivity.class));
+                                    }else{
+                                        Model model = new Model(postDesc,postTitle,uID,name, uri.toString(),radioId);
+                                        String modelid = mDatabase.push().getKey();
+                                        mDatabase.child(name).child(modelid).setValue(model);
+                                        Toast.makeText(CreatePostActivity.this, "Post wurde erfolgreich erstellt.", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(CreatePostActivity.this,MarketplaceActivity.class));
+                                    }
                                 }
-                            }
-                        });
+                            });
 
 
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        p.setVisibility(View.GONE);
-                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            p.setVisibility(View.GONE);
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-                        Toast.makeText(CreatePostActivity.this, "Leider fehlgeschlagen. Bitte versuchen sie es erneut.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            Toast.makeText(CreatePostActivity.this, "Leider fehlgeschlagen. Bitte versuchen sie es erneut.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
 
         }
+        else{
+            Toast.makeText(CreatePostActivity.this, "Leider fehlgeschlagen. Bitte versuchen sie es erneut.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
 

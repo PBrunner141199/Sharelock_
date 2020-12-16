@@ -110,6 +110,7 @@
         android:backgroundTint="#FFFFFF"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:indeterminateDrawable="@drawable/progress"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

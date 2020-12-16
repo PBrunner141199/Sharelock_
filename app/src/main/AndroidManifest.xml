@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sharelockv2">
-        <activity android:name=".CreatePostActivity"></activity>
+        <activity android:name=".SetProfilePictureActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".CreatePostActivity" />
         <activity android:name=".MarketplaceActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RegistrationActivity" />
