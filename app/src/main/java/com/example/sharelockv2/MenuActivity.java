@@ -19,7 +19,7 @@ public class MenuActivity extends AppCompatActivity {
         marketplace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, MarketplaceActivity_.class));
+                startActivity(new Intent(MenuActivity.this, CreatePostActivity.class));
             }
         });
     }

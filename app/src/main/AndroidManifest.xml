@@ -14,12 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sharelockv2">
+        <activity android:name=".Marketplace"></activity>
         <activity
-            android:name=".MarketplaceActivity_"
+            android:name=".Frag1$MarketplaceActivity_"
             android:label="@string/title_activity_marketplace_"
-            android:theme="@style/Theme.Sharelockv2.NoActionBar"></activity>
+            android:theme="@style/Theme.Sharelockv2.NoActionBar" />
         <activity android:name=".CreatePostActivity" />
-        <activity android:name=".MarketplaceActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LoginActivity" />

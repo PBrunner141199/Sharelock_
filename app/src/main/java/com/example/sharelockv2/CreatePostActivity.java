@@ -135,7 +135,7 @@ public class CreatePostActivity extends AppCompatActivity {
                         });
 
                         Toast.makeText(CreatePostActivity.this, "Post wurde erfolgreich erstellt.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(CreatePostActivity.this,MarketplaceActivity_.class));
+                        startActivity(new Intent(CreatePostActivity.this, Marketplace.class));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
