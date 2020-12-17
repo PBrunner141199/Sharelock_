@@ -24,29 +24,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arrow_back_button" />
 
-    <Button
-        android:id="@+id/loginAction"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginLeft="115dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
-        android:layout_marginBottom="248dp"
-        android:text="LOGIN"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        app:backgroundTint="@android:color/white"
-        app:iconTint="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:strokeColor="@color/black"
-        app:strokeWidth="2dp" />
-
     <TextView
         android:id="@+id/menueText3"
         android:layout_width="227dp"
@@ -66,11 +43,26 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
+        android:id="@+id/username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginEnd="24dp"
+        android:hint="E-Mail"
+        android:imeOptions="actionDone"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="24dp"
         android:hint="Passwort"
 
@@ -81,20 +73,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="268dp"
-        android:layout_marginEnd="24dp"
-        android:imeOptions="actionDone"
-        android:hint="E-Mail"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
+    <Button
+        android:id="@+id/loginAction"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="115dp"
+        android:text="LOGIN"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:backgroundTint="@android:color/white"
+        app:iconTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.479"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -116,13 +114,13 @@
         android:id="@+id/forgotpw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="240dp"
         android:fontFamily="@font/vollkorn"
         android:text="Haben Sie ihr Passwort vergessen? Klicken sie hier!"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

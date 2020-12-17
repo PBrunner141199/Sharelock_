@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         goback=findViewById(R.id.goback);
         mAuth= FirebaseAuth.getInstance();
 
+
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +53,16 @@ public class LoginActivity extends AppCompatActivity {
         forgotpw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String email = editemail.getText().toString();
+                if (email.equals("")){
+                    Toast.makeText(LoginActivity.this, "Bitte geben Sie ihre E-Mail ein um ihr Passwort zurückzusetzen.",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    mAuth.sendPasswordResetEmail(email);
+                    Toast.makeText(LoginActivity.this, "Reset E-Mail wurde an "+email+" gesendet.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -112,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        mAuth.signOut();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             startActivity(new Intent(LoginActivity.this, MenuActivity.class));

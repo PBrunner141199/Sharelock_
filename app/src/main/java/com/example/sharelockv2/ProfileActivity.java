@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,18 +30,23 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser user;
     DatabaseReference myRef;
     TextView name,email;
-    FloatingActionButton setProfilePicture;
-    ImageView profilePicture;
-    Button zurueck;
+
+    ImageView profilePicture, logout;
+    ImageView zurueck, profileHome;
+    ImageButton profileSetting, profileNoftifications;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         name = findViewById(R.id.name);
         email = findViewById(R.id.emailadresse);
-        setProfilePicture = findViewById(R.id.setProfilePicture);
+        logout= findViewById(R.id.logout);
+
         profilePicture = findViewById(R.id.profile_image);
         zurueck = findViewById(R.id.zurueck);
+        profileHome = findViewById(R.id.profileHome);
+        profileSetting = findViewById(R.id.profileSettings);
+        profileNoftifications = findViewById(R.id.profileNotifications);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -48,13 +55,28 @@ public class ProfileActivity extends AppCompatActivity {
         name.setText(user.getDisplayName());
         email.setText(user.getEmail());
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                startActivity(new Intent ( ProfileActivity.this, MainActivity.class));
+            }
+        });
+
+        profileHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, MenuActivity.class));
+            }
+        });
+
         zurueck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent( ProfileActivity.this, MenuActivity.class));
             }
         });
-        setProfilePicture.setOnClickListener(new View.OnClickListener() {
+        profileSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProfileActivity.this, SetProfilePictureActivity.class));
@@ -67,7 +89,8 @@ public class ProfileActivity extends AppCompatActivity {
                 if (snapshot.child("ProfileImage").child("imageUrl").getValue()!=null){
                 String url = snapshot.child("ProfileImage").child("imageUrl").getValue().toString();
 
-                Picasso.get().load(url).into(profilePicture);}
+                //Glide.with(this).load(url).into(profilePicture);
+                }
                 else{
                     profilePicture.setImageResource(R.drawable.viewholder3);
                 }

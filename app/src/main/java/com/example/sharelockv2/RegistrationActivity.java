@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.sharelockv2.Helperclasses.UserHelperClass;
@@ -25,6 +27,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database= FirebaseDatabase.getInstance();
     DatabaseReference myRef= database.getReference("Nutzerdaten");
+    ImageView backbtn;
 
 
 
@@ -38,7 +41,22 @@ public class RegistrationActivity extends AppCompatActivity {
         Button register=findViewById(R.id.registration2);
         final EditText email2= findViewById(R.id.email3);
         final EditText password= findViewById(R.id.password3);
+        backbtn = findViewById(R.id.backbtn);
+        FirebaseUser user = mAuth.getCurrentUser();
 
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (user != null){
+                    mAuth.signOut();
+                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                }
+                else{
+                    startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                }
+            }
+        });
 
 
         register.setOnClickListener(new View.OnClickListener() {

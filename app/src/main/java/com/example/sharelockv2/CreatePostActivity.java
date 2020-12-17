@@ -167,11 +167,11 @@ public class CreatePostActivity extends AppCompatActivity {
                                     int radioId = radioGroup.getCheckedRadioButtonId();
                                     if (radioId== -1){
                                         Toast.makeText(CreatePostActivity.this, "Sie müssen Angebot oder Nachfrage auswählen.", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(CreatePostActivity.this, CreatePostActivity.class));
+
                                     }else{
                                         Model model = new Model(postDesc,postTitle,uID,name, uri.toString(),radioId);
                                         String modelid = mDatabase.push().getKey();
-                                        mDatabase.child(name).child(modelid).setValue(model);
+                                        mDatabase.child(modelid).setValue(model);
                                         Toast.makeText(CreatePostActivity.this, "Post wurde erfolgreich erstellt.", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(CreatePostActivity.this,MarketplaceActivity.class));
                                     }

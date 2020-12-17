@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,6 +18,7 @@ public class MenuActivity extends AppCompatActivity {
     TextView welcomeMenue;
     FirebaseAuth mAuth;
     FirebaseUser user;
+    ImageView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,18 @@ public class MenuActivity extends AppCompatActivity {
         welcomeMenue = findViewById(R.id.welcomeMenue);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        logout = findViewById(R.id.logout2);
 
         welcomeMenue.setText("Hallo "+user.getDisplayName()+"! Schön, dass du da bist");
 
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                startActivity(new Intent (MenuActivity.this, MainActivity.class));
+            }
+        });
 
         marketplace.setOnClickListener(new View.OnClickListener() {
             @Override

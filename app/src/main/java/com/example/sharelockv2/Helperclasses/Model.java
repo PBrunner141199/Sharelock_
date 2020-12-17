@@ -5,7 +5,7 @@ public class Model {
     int type;
 
 
-
+    public Model(){}
     public Model(String desc, String title, String uID, String username, String imageUrl, int type){
         this.title=title;
         this.desc=desc;

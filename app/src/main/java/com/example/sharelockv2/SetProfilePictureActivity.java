@@ -24,16 +24,20 @@ import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.sharelockv2.Helperclasses.Model;
 import com.example.sharelockv2.Helperclasses.ProfileHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -52,7 +56,8 @@ public class SetProfilePictureActivity extends AppCompatActivity {
 
     de.hdodenhof.circleimageview.CircleImageView displayimageView;
     private static final int REQUEST_CODE = 1;
-    Button gallery,camera,upload;
+    Button upload;
+    ImageButton gallery,camera;
     private Uri imageUri;
     ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -62,6 +67,7 @@ public class SetProfilePictureActivity extends AppCompatActivity {
     private static final String TAG="SetProfileActivity";
     private Bitmap image;
     public boolean Gallery;
+    private EditText username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +84,8 @@ public class SetProfilePictureActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         progressBar.setVisibility(View.INVISIBLE);
+        username = findViewById(R.id.benutzername);
+        username.setHint("Derzeitiger Name: "+user.getDisplayName());
 
 
         camera.setOnClickListener(new View.OnClickListener() {
@@ -228,8 +236,24 @@ public class SetProfilePictureActivity extends AppCompatActivity {
                                 Uri imageUrl = uri;
 
                                     root.child(user.getUid()).child("ProfileImage").child("imageUrl").setValue(imageUrl.toString());
-                                    Toast.makeText(SetProfilePictureActivity.this, "Profil wurde erfolgreich aktualisiert", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(SetProfilePictureActivity.this,ProfileActivity.class));
+
+                                final EditText name1=findViewById(R.id.benutzername);
+                                String username = name1.getText().toString();
+
+                                UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                                user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+
+                                            Toast.makeText(SetProfilePictureActivity.this, "Profil wurde erfolgreich aktualisiert", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(SetProfilePictureActivity.this, ProfileActivity.class));
+                                            finish();
+                                        }
+
+                                    }
+                                });
+
 
                             }
                         });
