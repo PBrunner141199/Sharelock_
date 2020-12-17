@@ -43,7 +43,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 1;
     private static final String TAG="CreatePostActivity";
-    ImageView postimage;
+    ImageView postimage,goback;
     Button createbtn;
     RadioButton radioButton;
     RadioGroup radioGroup;
@@ -69,14 +69,19 @@ public class CreatePostActivity extends AppCompatActivity {
         createbtn=findViewById(R.id.createbtn);
         radioGroup = findViewById(R.id.radioGroup);
         postimage.setImageResource(R.drawable.sharelock_menue);
-
+        goback= findViewById(R.id.backbtn23);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("PostPictures");
         mDatabase = FirebaseDatabase.getInstance().getReference("Posts");
         mAuth= FirebaseAuth.getInstance();
 
 
-
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CreatePostActivity.this, MarketplaceActivity.class));
+            }
+        });
         camerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

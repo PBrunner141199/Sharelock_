@@ -58,6 +58,7 @@ public class SetProfilePictureActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 1;
     Button upload;
     ImageButton gallery,camera;
+    ImageView goback;
     private Uri imageUri;
     ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -74,6 +75,7 @@ public class SetProfilePictureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_profile_picture);
 
+        goback = findViewById(R.id.ButtonBack);
         displayimageView = findViewById(R.id.displayImageView);
         gallery = findViewById(R.id.galleryBtn);
         camera = findViewById(R.id.cameraBtn);
@@ -87,7 +89,12 @@ public class SetProfilePictureActivity extends AppCompatActivity {
         username = findViewById(R.id.benutzername);
         username.setHint("Derzeitiger Name: "+user.getDisplayName());
 
-
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent (SetProfilePictureActivity.this, ProfileActivity.class));
+            }
+        });
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

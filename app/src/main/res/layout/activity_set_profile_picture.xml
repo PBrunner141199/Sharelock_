@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.853" />
+        app:layout_constraintVertical_bias="0.755" />
 
     <TextView
         android:id="@+id/usernameChangeText"
@@ -46,22 +46,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.184"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/notificationSettings"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/vollkorn"
-        android:text="Mitteilungen erlauben"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.338"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642"
-        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
+        app:layout_constraintVertical_bias="0.449" />
 
     <EditText
         android:id="@+id/benutzername"
@@ -77,7 +63,22 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559" />
+        app:layout_constraintVertical_bias="0.507" />
+
+    <Switch
+        android:id="@+id/notificationSettings"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/vollkorn"
+        android:text="Mitteilungen erlauben"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.338"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.571"
+        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
     <TextView
         android:id="@+id/profileSettingsText"
@@ -97,7 +98,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/arrowBackButtonProfileSettings"
+        android:id="@+id/ButtonBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:scaleType="fitXY"
@@ -118,10 +119,10 @@
         app:backgroundTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729"
+        app:layout_constraintVertical_bias="0.655"
         app:strokeColor="@color/cardview_shadow_start_color"
         app:strokeWidth="3dp" />
 

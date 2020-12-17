@@ -89,7 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
                 if (snapshot.child("ProfileImage").child("imageUrl").getValue()!=null){
                 String url = snapshot.child("ProfileImage").child("imageUrl").getValue().toString();
 
-                //Glide.with(this).load(url).into(profilePicture);
+                Glide.with(ProfileActivity.this).load(url).into(profilePicture);
                 }
                 else{
                     profilePicture.setImageResource(R.drawable.viewholder3);
