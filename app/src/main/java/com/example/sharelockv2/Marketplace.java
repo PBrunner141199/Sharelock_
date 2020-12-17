@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -61,10 +62,11 @@ public class Marketplace extends AppCompatActivity {
         RadioButton nButton = (RadioButton) findViewById(R.id.nachfragebtn);
 
         nButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    title.setBackgroundColor();
+                    title.setBackgroundColor(R.color.black);
                 }
             }
         });
