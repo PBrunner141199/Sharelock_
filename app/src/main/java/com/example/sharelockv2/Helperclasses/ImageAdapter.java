@@ -48,7 +48,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             holder.angebotOderNachfrage.setText("Helfen!");
         }
         else if (currentUpload.getType() == 2 ){
-            holder.angebotOderNachfrage.setText("Annhemen!");
+            holder.angebotOderNachfrage.setText("Annehmen!");
         }
         else{
             holder.angebotOderNachfrage.setText("Stefan hat einen Fehler gemacht");
