@@ -67,7 +67,7 @@ public class SetProfilePictureActivity extends AppCompatActivity {
     FirebaseUser user;
     private static final String TAG="SetProfileActivity";
     private Bitmap image;
-    public boolean Gallery;
+    public boolean Camera;
     private EditText username;
 
     @Override
@@ -87,7 +87,7 @@ public class SetProfilePictureActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         progressBar.setVisibility(View.INVISIBLE);
         username = findViewById(R.id.benutzername);
-        username.setHint("Derzeitiger Name: "+user.getDisplayName());
+        username.setText(user.getDisplayName());
 
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,15 +112,71 @@ public class SetProfilePictureActivity extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Gallery == true){
+                final EditText name1=findViewById(R.id.benutzername);
+                String username = name1.getText().toString();
+                if (Camera == false){
                     if (imageUri != null){
                         uploadToFirebase(imageUri);
+                        if (username != null) {
+                            UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                            user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+
+                                        Toast.makeText(SetProfilePictureActivity.this, "Profil wurde erfolgreich aktualisiert", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(SetProfilePictureActivity.this, ProfileActivity.class));
+                                        finish();
+                                    }
+
+                                }
+                            });
+                        }
                     }else{
-                        Toast.makeText(SetProfilePictureActivity.this, "Please Select Image", Toast.LENGTH_SHORT).show();
+                        if (username != null) {
+                            UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                            user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+
+                                        Toast.makeText(SetProfilePictureActivity.this, "Profil wurde erfolgreich aktualisiert", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(SetProfilePictureActivity.this, ProfileActivity.class));
+                                        finish();
+                                    }
+
+                                }
+                            });
+                        }else{
+                            Toast.makeText(SetProfilePictureActivity.this, "Bitte wählen sie ein Bild aus oder ändern sie ihren Benutzernamen", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
-                else if(Gallery == false){
-                        upload();
+                else if(Camera == true){
+
+                    upload();
+                    final EditText name2=findViewById(R.id.benutzername);
+                    String username2 = name2.getText().toString();
+                    if (username2 !="") {
+                        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                        user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+
+                                    Toast.makeText(SetProfilePictureActivity.this, "Profil wurde erfolgreich aktualisiert", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(SetProfilePictureActivity.this, ProfileActivity.class));
+                                    finish();
+                                }
+
+                            }
+                        });
+                    }else{
+                        Toast.makeText(SetProfilePictureActivity.this, "Profil wurde erfolgreich aktualisiert", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SetProfilePictureActivity.this, ProfileActivity.class));
+                        finish();
+                    }
+
                 }
 
             }
@@ -135,13 +191,13 @@ public class SetProfilePictureActivity extends AppCompatActivity {
 
             imageUri = data.getData();
             displayimageView.setImageURI(imageUri);
-            Gallery = true;
+            Camera = false;
 
         }
         else if (requestCode ==0 && resultCode== RESULT_OK){
             image = (Bitmap) data.getExtras().get("data");
             displayimageView.setImageBitmap(image);
-            Gallery = false;
+            Camera = true;
         }
     }
     private void uploadToFirebase(Uri uri){
@@ -244,22 +300,6 @@ public class SetProfilePictureActivity extends AppCompatActivity {
 
                                     root.child(user.getUid()).child("ProfileImage").child("imageUrl").setValue(imageUrl.toString());
 
-                                final EditText name1=findViewById(R.id.benutzername);
-                                String username = name1.getText().toString();
-
-                                UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
-                                user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()){
-
-                                            Toast.makeText(SetProfilePictureActivity.this, "Profil wurde erfolgreich aktualisiert", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(SetProfilePictureActivity.this, ProfileActivity.class));
-                                            finish();
-                                        }
-
-                                    }
-                                });
 
 
                             }

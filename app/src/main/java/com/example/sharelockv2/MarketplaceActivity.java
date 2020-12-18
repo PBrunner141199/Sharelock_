@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarketplaceActivity extends AppCompatActivity {
+public class MarketplaceActivity extends AppCompatActivity  {
 
     FloatingActionButton newpost;
     RecyclerView recyclerView;
@@ -34,11 +34,15 @@ public class MarketplaceActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     List<Model> uploads;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marketplace);
         newpost=findViewById(R.id.temporarybtn);
+
+
+
 
         newpost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,4 +87,6 @@ public class MarketplaceActivity extends AppCompatActivity {
 
 
     }
+
+
 }

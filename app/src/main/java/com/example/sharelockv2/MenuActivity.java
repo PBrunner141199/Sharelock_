@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MenuActivity extends AppCompatActivity {
     ImageButton marketplace;
-    ImageButton profile;
+    ImageButton profile,fridge,cookbook;
     TextView welcomeMenue;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -30,6 +31,8 @@ public class MenuActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         logout = findViewById(R.id.logout2);
+        fridge = findViewById(R.id.fridgeMenue);
+        cookbook = findViewById(R.id.shareCookBookMenue);
 
         welcomeMenue.setText("Hallo "+user.getDisplayName()+"! Schön, dass du da bist");
 
@@ -52,6 +55,19 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MenuActivity.this, ProfileActivity.class));
+            }
+        });
+
+        cookbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MenuActivity.this, "Diese Funktion existiert leider noch nicht. Tut uns leid.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        fridge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MenuActivity.this, "Diese Funktion existiert leider noch nicht. Tut uns leid.", Toast.LENGTH_SHORT).show();
             }
         });
     }

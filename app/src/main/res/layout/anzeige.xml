@@ -1,27 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:andoroid="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <RelativeLayout
+        android:id="@+id/RelativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="221dp">
+        android:layout_height="283dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rechteck">
 
         <ImageView
             android:id="@+id/bild"
-            android:background="@color/purple_500"
-            android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_width="327dp"
+            android:layout_height="189dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:adjustViewBounds="false"
+            android:alpha="1"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/title"
-            android:background="@color/light_green"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginTop="150dp"
-            android:text="Nummer 1" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="204dp"
+            android:alpha="1"
+            android:background="@color/white"
+            android:text="Nummer 1"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ersteller"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="204dp"
+            android:layout_marginEnd="22dp"
+            android:fontFamily="@font/vollkorn"
+            android:text="Ersteller"
+            android:textAlignment="viewEnd"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="226dp"
+            android:layout_marginEnd="22dp"
+            android:text="20.08.2020 18:22"
+            android:textAlignment="viewEnd"
+            android:fontFamily="@font/vollkorn"/>
+
+        <Button
+            android:id="@+id/AngebotNachfragePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="228dp"
+            android:fontFamily="@font/vollkorn"
+            android:text="Angebot"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            andoroid:backgroundTint="@android:color/white"
+            andoroid:iconTint="@android:color/black"
+            andoroid:layout_constraintBottom_toBottomOf="parent"
+            andoroid:layout_constraintEnd_toEndOf="parent"
+            andoroid:layout_constraintTop_toBottomOf="@+id/imageView"
+            andoroid:strokeColor="@android:color/black"
+            andoroid:strokeWidth="2dp" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

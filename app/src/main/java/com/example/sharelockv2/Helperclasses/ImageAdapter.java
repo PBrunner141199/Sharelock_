@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,9 +22,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 {   Context nContext;
     List<Model> uploads;
 
-    public ImageAdapter(Context context, List<Model> uploads){
+
+
+    public ImageAdapter(Context context, List<Model> uploads ){
         nContext = context;
         this.uploads = uploads;
+
     }
     @NonNull
     @Override
@@ -37,8 +41,18 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         Model currentUpload = uploads.get(position);
         holder.title.setText(currentUpload.getTitle());
+        holder.username.setText(currentUpload.getUsername());
+        holder.date.setText(currentUpload.getDate());
         Picasso.with(nContext).load(currentUpload.getImageUrl()).fit().centerCrop().into(holder.imageView);
-
+        if (currentUpload.getType() == 1){
+            holder.angebotOderNachfrage.setText("Helfen!");
+        }
+        else if (currentUpload.getType() == 2 ){
+            holder.angebotOderNachfrage.setText("Annhemen!");
+        }
+        else{
+            holder.angebotOderNachfrage.setText("Stefan hat einen Fehler gemacht");
+        }
     }
 
     @Override
@@ -46,13 +60,25 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return uploads.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
+    public class ImageViewHolder extends RecyclerView.ViewHolder  {
+        public TextView title,username,date;
         public ImageView imageView;
+        public Button angebotOderNachfrage;
+
+
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             imageView = itemView.findViewById(R.id.bild);
+            username = itemView.findViewById(R.id.ersteller);
+            date = itemView.findViewById(R.id.date);
+            angebotOderNachfrage = itemView.findViewById(R.id.AngebotNachfragePost);
+
+
+
         }
+
+
     }
+
 }

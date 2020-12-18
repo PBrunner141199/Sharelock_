@@ -37,15 +37,17 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.UUID;
 
 public class CreatePostActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE = 1;
+    private static final int REQUEST_CODE = 1, RB1_ID = 1, RB2_ID=2;
     private static final String TAG="CreatePostActivity";
     ImageView postimage,goback;
     Button createbtn;
-    RadioButton radioButton;
+    RadioButton nachfrage, angebot;
     RadioGroup radioGroup;
     FloatingActionButton camerbtn;
     EditText title, desc;
@@ -70,6 +72,11 @@ public class CreatePostActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
         postimage.setImageResource(R.drawable.sharelock_menue);
         goback= findViewById(R.id.backbtn23);
+        nachfrage = findViewById(R.id.nachfragebtn);
+        angebot = findViewById(R.id.anbeotbtn);
+        nachfrage.setId(RB1_ID);
+        angebot.setId(RB2_ID);
+
 
         mStorageRef = FirebaseStorage.getInstance().getReference("PostPictures");
         mDatabase = FirebaseDatabase.getInstance().getReference("Posts");
@@ -168,13 +175,15 @@ public class CreatePostActivity extends AppCompatActivity {
                                     String uID = user.getUid();
                                     String name = user.getDisplayName();
                                     Uri downloadUri = uri;
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.GERMANY);
+                                    String date = dateFormat.format(new java.util.Date());
 
                                     int radioId = radioGroup.getCheckedRadioButtonId();
                                     if (radioId== -1){
                                         Toast.makeText(CreatePostActivity.this, "Sie müssen Angebot oder Nachfrage auswählen.", Toast.LENGTH_SHORT).show();
 
                                     }else{
-                                        Model model = new Model(postDesc,postTitle,uID,name, uri.toString(),radioId);
+                                        Model model = new Model(postDesc,postTitle,uID,name, uri.toString(),radioId,date);
                                         String modelid = mDatabase.push().getKey();
                                         mDatabase.child(modelid).setValue(model);
                                         Toast.makeText(CreatePostActivity.this, "Post wurde erfolgreich erstellt.", Toast.LENGTH_SHORT).show();
@@ -199,7 +208,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
         }
         else{
-            Toast.makeText(CreatePostActivity.this, "Leider fehlgeschlagen. Bitte versuchen sie es erneut.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreatePostActivity.this, "Bitte fügen sie ein Foto hinzu", Toast.LENGTH_SHORT).show();
         }
     }
 
